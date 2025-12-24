@@ -1,9 +1,6 @@
 install:
 	npm ci
 
-start:
-	npm start
-
 run:
 	npm run dev
 
