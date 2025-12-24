@@ -1,9 +1,9 @@
-import ExpenseForm from "./ExpenseForm.jsx" // Форма (добавления)
+import ExpenseForm from "./ExpenseForm.jsx"
 
 const ExpenseItem = () => {
 
   return (
-    <div className="container-fluid h-100">
+    <div className="container-fluid h-100 mb-4">
       <div className="row justify-content-center align-content-center h-100">
         <div className="col-12">
           <div className="card">
