@@ -1,22 +1,19 @@
 import ExpenseForm from "./ExpenseForm.jsx"
+import { ListGroupItem } from "react-bootstrap"
 
-const ExpenseItem = () => {
+import { Dropdown } from "react-bootstrap"
+
+import { selectSortedExpensesItems, removeExpense } from "../store/expensesSlice"
+import { getCategoryName } from "../constants/categories"
+import { formatDate } from "../utils/formatDate"
+import { formatRuble } from "../utils/formatCurrency"
+
+const ExpenseItem = ({ id, description, category, amount, date}) => {
 
   return (
-    <div className="container-fluid h-100 mb-4">
-      <div className="row justify-content-center align-content-center h-100">
-        <div className="col-12">
-          <div className="card">
-            <h5 className="card-header">Добавление новой траты</h5>
-            <div className="card-body">
-              <div className="d-flex align-items-center ">
-                <ExpenseForm />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ListGroupItem key={id} className="mb-2 w-100">
+      
+    </ListGroupItem>
   )
 }
 

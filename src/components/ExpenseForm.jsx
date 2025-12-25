@@ -1,24 +1,19 @@
-import cn from 'classnames'
-import Button from 'react-bootstrap/Button'
-import { useFormik } from 'formik'
 import * as yup from 'yup'
-import { useTranslation } from 'react-i18next'
-import { useEffect, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import { useRef } from 'react'
+import { useFormik } from 'formik'
+import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import { addExpense } from '../store/expensesSlice.js'
 import { CATEGORIES, getCategoriesIds } from '../constants/categories.js'
-import { selectExpensesItems } from '../store/expensesSlice.js'
 
 const renderOption = ({ id, name }) => <option key={id} value={id}>{name}</option>
 
 const ExpenseForm = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
-  const expenses = useSelector(selectExpensesItems)
-
 
   const categoriesIds = getCategoriesIds()
 
@@ -39,7 +34,6 @@ const ExpenseForm = () => {
         'Дата не может быть в будущем',
         (value) => {
           if (!value) return false
-
           const today = new Date().toLocaleDateString('sv-SE')
           return value <= today
         }),
@@ -53,10 +47,7 @@ const ExpenseForm = () => {
     enableReinitialize: true,
     onSubmit: (values) => {
       try {
-        // добавление траты
         dispatch(addExpense(values))
-        
-        console.log(expenses)
         formik.resetForm()
         sumInputRef.current.focus()
       }
