@@ -29,6 +29,7 @@ Why chosen:
 - Expense chart
 - Deploy
 - Localization
+- CI/CD
 
 ## Getting Started
 
