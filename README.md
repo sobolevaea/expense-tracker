@@ -1,16 +1,58 @@
-# React + Vite
+<div align="right" style='display: flex; gap: 1px; justify-content: end'>
+    <a href="#">
+      <img src="https://cdn.jsdelivr.net/gh/lipis/flag-icons/flags/4x3/ru.svg" width="32" style="border: 2px solid #ccc; border-radius: 4px; padding: 2px;"
+      alt="Русский язык" title="Русский язык"/>
+    </a>
+  <a href="README.md">
+    <img src="https://cdn.jsdelivr.net/gh/lipis/flag-icons/flags/4x3/us.svg" width="32" style="border: 2px solid transparent; border-radius: 4px; padding: 2px;" alt="Английский язык" title="Английский язык"/>
+  </a>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Проект "Трекер расходов":
 
-Currently, two official plugins are available:
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=sobolevaea_expense-tracker&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=sobolevaea_expense-tracker)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Приложение для учёта личных расходов.
+Позволяет добавлять и удалять траты, видеть общую сумму расходов, суммы по категориям и визуализировать их с помощью диаграммы.
 
-## React Compiler
+### ▷ [Live версия](https://frontend-expense-tracker-w8dr.onrender.com)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Фреймворк
 
-## Expanding the ESLint configuration
+Использован React с Redux Toolkit.
+Почему выбран:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React позволяет создавать интерактивный интерфейс с компонентами.
+- Redux Toolkit упрощает управление состоянием и работу с localStorage
+- Широкая экосистема (Formik, React-Bootstrap, Recharts) облегчает реализацию формы, списков и графиков.
+
+## Реализованные усложнения
+
+- Диаграмма расходов
+- Деплой
+- Локализация
+
+## Начало работы
+
+Для локальной настройки проекта необходимо выполнить следующие шаги:
+
+1. Склонировать репозиторий
+
+```bash
+git clone git@github.com:sobolevaea/expense-tracker.git
+cd expense-tracker
+```
+
+2. Установить зависимости
+
+```bash
+make install
+```
+
+3. Запустить клиент
+
+```bash
+make run
+```
+
+Приложение будет доступно по локальному адресу (http://localhost:5173/)
