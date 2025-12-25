@@ -1,6 +1,7 @@
 import { Dropdown } from "react-bootstrap"
 import { ListGroup } from "react-bootstrap"
 import { useDispatch } from "react-redux"
+import { useTranslation } from "react-i18next"
 
 import { formatDate } from "../utils/formatDate.js"
 import { formatRuble } from "../utils/formatCurrency.js"
@@ -8,6 +9,7 @@ import { removeExpense } from "../store/expensesSlice.js"
 import { getCategoryName } from "../constants/categories.js"
 
 const ExpenseItem = ({ expense }) => {
+  const { t } = useTranslation()
   const { id, description, category, amount, date } = expense
   const dispatch = useDispatch()
 
@@ -26,7 +28,7 @@ const ExpenseItem = ({ expense }) => {
 
         <Dropdown.Menu className="w-100">
           <Dropdown.ItemText>
-            <span className="text-muted small"><b>Дата:</b> {formatDate(date)}</span>
+            <span className="text-muted small"><b>{t('text.date')}:</b> {formatDate(date)}</span>
           </Dropdown.ItemText>
           <Dropdown.Divider />
           <Dropdown.Item
@@ -34,7 +36,7 @@ const ExpenseItem = ({ expense }) => {
             className="text-danger"
             onClick={() => dispatch(removeExpense(id))}
           >
-            Удалить
+            {t('buttons.delete')}
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

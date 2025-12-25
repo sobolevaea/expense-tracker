@@ -19,19 +19,19 @@ const ExpenseForm = () => {
 
   const validationSchema = yup.object({
     sum: yup.number()
-      .required('Введите сумму')
-      .positive('Сумма должна быть больше 0'),
+      .required(t('errors.enterSum'))
+      .positive(t('errors.bePositive')),
     category: yup.string()
-      .required('Выберите категорию')
-      .oneOf(categoriesIds, 'Выберите категорию'),
+      .required(t('errors.chooseCategory'))
+      .oneOf(categoriesIds, t('errors.chooseCategory')),
     description: yup.string()
-      .required('Введите описание')
-      .min(3, 'Минимум 3 символа'),
+      .required(t('errors.enterDescription'))
+      .min(3, t('errors.min3Symbols')),
     date: yup.string()
-      .required('Выберите дату')
+      .required(t('errors.chooseDate'))
       .test(
         'not-in-future',
-        'Дата не может быть в будущем',
+        t('errors.notInFuture'),
         (value) => {
           if (!value) return false
           const today = new Date().toLocaleDateString('sv-SE')
@@ -52,7 +52,7 @@ const ExpenseForm = () => {
         sumInputRef.current.focus()
       }
       catch (error) {
-        console.error(`Failed to add expense: ${error.message}`)
+        console.error(`${t('errors.failedToAdd')} ${error.message}`)
       }
     },
   })
@@ -66,14 +66,14 @@ const ExpenseForm = () => {
           type='number'
           name="sum"
           id="sum"
-          placeholder='Введите сумму'
+          placeholder={t('text.enterSum')}
           value={formik.values.sum}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           autoFocus
         />
         <label className="visually-hidden" htmlFor="sum">
-          Введите сумму
+          {t('text.enterSum')}
         </label>
         <Form.Control.Feedback type="invalid">
           {formik.errors.sum}
@@ -87,13 +87,13 @@ const ExpenseForm = () => {
           value={formik.values.category}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          aria-label="Выберите категорию"
+          aria-label={t('text.chooseCategory')}
         >
-          <option value="">Выберите категорию</option>
+          <option value="">{t('text.chooseCategory')}</option>
           {CATEGORIES.map(renderOption)}
         </Form.Select>
         <label className="visually-hidden" htmlFor="category">
-          Выберите категорию
+          {t('text.chooseCategory')}
         </label>
         <Form.Control.Feedback type="invalid">
           {formik.errors.category}
@@ -106,11 +106,11 @@ const ExpenseForm = () => {
           id="description"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          placeholder='На что потратили?'
+          placeholder={t('text.enterDescription')}
           value={formik.values.description}
         />
         <label className="visually-hidden" htmlFor="description">
-          На что потратили?
+          {t('text.enterDescription')}
         </label>
         <Form.Control.Feedback type="invalid">
           {formik.errors.description}
@@ -128,7 +128,7 @@ const ExpenseForm = () => {
           isInvalid={formik.touched.date && !!formik.errors.date}
         />
         <label className="visually-hidden" htmlFor="date">
-          Введите дату
+          {t('text.enterDate')}
         </label>
         {formik.errors.date && (
           <div className="invalid-feedback">{formik.errors.date}</div>
@@ -138,7 +138,7 @@ const ExpenseForm = () => {
         type="submit"
         className='mt-2 col-12'
         disabled={!formik.isValid}
-      >Добавить</Button>
+      >{t('buttons.add')}</Button>
     </Form>
   )
 }

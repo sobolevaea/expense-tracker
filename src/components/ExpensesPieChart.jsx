@@ -6,6 +6,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import { formatRuble } from '../utils/formatCurrency'
 import { getCategoryName } from '../constants/categories'
@@ -20,10 +21,11 @@ const COLORS = [
 ]
 
 const ExpensesPieChart = () => {
+  const { t } = useTranslation()
   const data = useSelector(selectAmountByCategoryFiltered)
 
   if (data.length === 0) {
-    return <div className="text-muted">Нет данных для графика</div>
+    return <div className="text-muted">{t('text.noChartData')}</div>
   }
 
   const chartData = data.map(item => ({

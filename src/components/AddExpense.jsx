@@ -8,7 +8,7 @@ const AddExpense = () => {
 
   return (
     <CardWrapper>
-      <h5 className="card-header">Добавление новой траты</h5>
+      <h5 className="card-header">{t('titles.addExpense')}</h5>
       <div className="card-body">
         <div className="d-flex align-items-center">
           <ExpenseForm />
