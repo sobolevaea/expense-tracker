@@ -22,7 +22,6 @@ const expensesSlice = createSlice({
             category: values.category,
             description: values.description,
             date: values.date,
-            createdAt: new Date().toLocaleDateString('sv-SE'),
           },
         }
       },
@@ -38,9 +37,41 @@ const expensesSlice = createSlice({
 
 const selectExpenses = state => state.expenses
 
-export const selectExpensesItems = createSelector(
+const selectExpensesItems = createSelector(
   selectExpenses,
-  expensesState => expensesState.items,
+  (expenses) => expenses.items,
+)
+
+export const selectSortedExpensesItems = createSelector(
+  selectExpensesItems,
+  (items) => [...items].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  ),
+)
+
+export const selectTotalAmount = createSelector(
+  selectExpensesItems,
+  (items) => items.reduce((sum, { amount }) => sum + amount, 0)
+)
+
+export const selectAmountByCategory = createSelector(
+  selectExpensesItems,
+  (items) => items.reduce((acc, { category, amount }) => {
+    console.log(category, amount)
+    acc[category] = (acc[category] ?? 0) + amount
+    return acc
+  }, {})
+)
+
+export const selectAmountByCategoryFiltered = createSelector(
+  selectAmountByCategory,
+  (amountsByCategory) =>
+    Object.entries(amountsByCategory)
+      .filter(([, total]) => total > 0)
+      .map(([category, total]) => ({
+        category,
+        total,
+      }))
 )
 
 export const { addExpense, removeExpense } = expensesSlice.actions
