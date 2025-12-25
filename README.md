@@ -1,12 +1,6 @@
-<div align="right" style='display: flex; gap: 1px; justify-content: end'>
-    <a href="#">
-      <img src="https://cdn.jsdelivr.net/gh/lipis/flag-icons/flags/4x3/ru.svg" width="32" style="border: 2px solid #ccc; border-radius: 4px; padding: 2px;"
-      alt="Русский язык" title="Русский язык"/>
-    </a>
-  <a href="README.md">
-    <img src="https://cdn.jsdelivr.net/gh/lipis/flag-icons/flags/4x3/us.svg" width="32" style="border: 2px solid transparent; border-radius: 4px; padding: 2px;" alt="Английский язык" title="Английский язык"/>
-  </a>
-</div>
+<p align="right">
+  <strong>Русский</strong> | <a href="README-EN.md">English</a>
+</p>
 
 # Проект "Трекер расходов":
 
