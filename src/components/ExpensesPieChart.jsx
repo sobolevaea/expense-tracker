@@ -6,9 +6,10 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { useSelector } from 'react-redux'
-import { selectAmountByCategoryFiltered } from '../store/expensesSlice.js'
-import { getCategoryName } from '../constants/categories'
+
 import { formatRuble } from '../utils/formatCurrency'
+import { getCategoryName } from '../constants/categories'
+import { selectAmountByCategoryFiltered } from '../store/expensesSlice.js'
 
 const COLORS = [
   '#7cb3e3ff',
@@ -48,7 +49,6 @@ const ExpensesPieChart = () => {
               />
             ))}
           </Pie>
-
           <Tooltip formatter={(value) => formatRuble(value)} />
         </PieChart>
       </ResponsiveContainer>

@@ -1,19 +1,44 @@
-import ExpenseForm from "./ExpenseForm.jsx"
-import { ListGroupItem } from "react-bootstrap"
-
 import { Dropdown } from "react-bootstrap"
+import { ListGroup } from "react-bootstrap"
+import { useDispatch } from "react-redux"
 
-import { selectSortedExpensesItems, removeExpense } from "../store/expensesSlice"
-import { getCategoryName } from "../constants/categories"
-import { formatDate } from "../utils/formatDate"
-import { formatRuble } from "../utils/formatCurrency"
+import { formatDate } from "../utils/formatDate.js"
+import { formatRuble } from "../utils/formatCurrency.js"
+import { removeExpense } from "../store/expensesSlice.js"
+import { getCategoryName } from "../constants/categories.js"
 
-const ExpenseItem = ({ id, description, category, amount, date}) => {
+const ExpenseItem = ({ expense }) => {
+  const { id, description, category, amount, date } = expense
+  const dispatch = useDispatch()
 
   return (
-    <ListGroupItem key={id} className="mb-2 w-100">
-      
-    </ListGroupItem>
+    <ListGroup.Item as='li' key={id} className="mb-2 w-100">
+      <Dropdown className="w-100">
+        <Dropdown.Toggle variant="light" className="w-100 d-flex align-items-center justify-content-between text-start">
+          <div className="d-flex justify-content-between align-items-center flex-grow-1 me-2">
+            <div className="d-flex flex-column">
+              <span className="fw-bold">{description}</span>
+              <span className="">{getCategoryName(category)}</span>
+            </div>
+            <span>{formatRuble(amount)}</span>
+          </div>
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu className="w-100">
+          <Dropdown.ItemText>
+            <span className="text-muted small"><b>Дата:</b> {formatDate(date)}</span>
+          </Dropdown.ItemText>
+          <Dropdown.Divider />
+          <Dropdown.Item
+            as="button"
+            className="text-danger"
+            onClick={() => dispatch(removeExpense(id))}
+          >
+            Удалить
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    </ListGroup.Item>
   )
 }
 

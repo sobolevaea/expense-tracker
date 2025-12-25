@@ -4,7 +4,7 @@ import { I18nextProvider } from 'react-i18next'
 
 import App from './App.jsx'
 import store from './store/index.js'
-/* import resources from './locales/index.js' */
+import resources from './locale/index.js'
 
 const defaultLanguage = 'ru'
 
@@ -13,7 +13,7 @@ const initApp = () => {
 
   i18n.init({
     lng: defaultLanguage,
-    /*     resources, */
+    resources,
     debug: false,
     interpolation: {
       escapeValue: false,

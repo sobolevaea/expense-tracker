@@ -1,6 +1,6 @@
-import AddExpense from "./components/AddExpense.jsx" // Форма добавления (элемент)
-import ExpenseList from "./components/ExpenseList.jsx" // Список расходов
-import Summary from "./components/Summary.jsx" // Блок итогов
+import Summary from "./components/Summary.jsx"
+import AddExpense from "./components/AddExpense.jsx"
+import ExpenseList from "./components/ExpenseList.jsx"
 
 const App = () => {
   return (
