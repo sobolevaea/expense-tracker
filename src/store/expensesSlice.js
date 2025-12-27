@@ -1,6 +1,6 @@
 import { createSelector, createSlice, nanoid } from '@reduxjs/toolkit'
 
-import { loadExpenses } from '../utils/expensesStorage.js'
+import { loadExpenses } from '../utils/index.js'
 
 const initialState = {
   items: loadExpenses() || '',

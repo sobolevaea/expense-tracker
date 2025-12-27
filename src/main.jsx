@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import './style.css'
 import initApp from './init.jsx'
 
 const runApp = async () => {

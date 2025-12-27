@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import expensesReducer from './expensesSlice.js'
-import { saveExpenses } from '../utils/expensesStorage.js'
+import { saveExpenses } from '../utils/index.js'
 
 const store = configureStore({
   reducer: {

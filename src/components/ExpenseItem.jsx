@@ -3,10 +3,9 @@ import { ListGroup } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
 
-import { formatDate } from "../utils/formatDate.js"
-import { formatRuble } from "../utils/formatCurrency.js"
 import { removeExpense } from "../store/expensesSlice.js"
 import { getCategoryName } from "../constants/categories.js"
+import { formatDate, formatRuble } from "../utils/index.js"
 
 const ExpenseItem = ({ expense }) => {
   const { t } = useTranslation()

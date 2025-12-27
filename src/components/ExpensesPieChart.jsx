@@ -8,17 +8,10 @@ import {
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import { formatRuble } from '../utils/formatCurrency'
-import { getCategoryName } from '../constants/categories'
+import { COLORS } from '../constants/colors.js'
+import { formatRuble } from '../utils/index.js'
+import { getCategoryName } from '../constants/categories.js'
 import { selectAmountByCategoryFiltered } from '../store/expensesSlice.js'
-
-const COLORS = [
-  '#7cb3e3ff',
-  '#00C49F',
-  '#FFBB28',
-  '#FF8042',
-  '#845EC2',
-]
 
 const ExpensesPieChart = () => {
   const { t } = useTranslation()

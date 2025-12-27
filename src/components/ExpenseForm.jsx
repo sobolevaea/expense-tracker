@@ -7,43 +7,41 @@ import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { addExpense } from '../store/expensesSlice.js'
-import { CATEGORIES, getCategoriesIds } from '../constants/categories.js'
+import { getCategories, getCategoriesIds } from '../constants/categories.js'
 
 const renderOption = ({ id, name }) => <option key={id} value={id}>{name}</option>
+
+const getValidationShema = (t) => yup.object({
+  sum: yup.number()
+    .required(t('errors.enterSum'))
+    .positive(t('errors.bePositive')),
+  category: yup.string()
+    .required(t('errors.chooseCategory'))
+    .oneOf(getCategoriesIds(), t('errors.chooseCategory')),
+  description: yup.string()
+    .required(t('errors.enterDescription'))
+    .min(3, t('errors.min3Symbols')),
+  date: yup.string()
+    .required(t('errors.chooseDate'))
+    .test(
+      'not-in-future',
+      t('errors.notInFuture'),
+      (value) => {
+        if (!value) return false
+        const today = new Date().toLocaleDateString('sv-SE')
+        return value <= today
+      }),
+})
 
 const ExpenseForm = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const categoriesIds = getCategoriesIds()
-
-  const validationSchema = yup.object({
-    sum: yup.number()
-      .required(t('errors.enterSum'))
-      .positive(t('errors.bePositive')),
-    category: yup.string()
-      .required(t('errors.chooseCategory'))
-      .oneOf(categoriesIds, t('errors.chooseCategory')),
-    description: yup.string()
-      .required(t('errors.enterDescription'))
-      .min(3, t('errors.min3Symbols')),
-    date: yup.string()
-      .required(t('errors.chooseDate'))
-      .test(
-        'not-in-future',
-        t('errors.notInFuture'),
-        (value) => {
-          if (!value) return false
-          const today = new Date().toLocaleDateString('sv-SE')
-          return value <= today
-        }),
-  })
-
   const sumInputRef = useRef()
 
   const formik = useFormik({
     initialValues: { sum: '', category: '', description: '', date: '' },
-    validationSchema,
+    validationSchema: getValidationShema(t),
     enableReinitialize: true,
     onSubmit: (values) => {
       try {
@@ -90,7 +88,7 @@ const ExpenseForm = () => {
           aria-label={t('text.chooseCategory')}
         >
           <option value="">{t('text.chooseCategory')}</option>
-          {CATEGORIES.map(renderOption)}
+          {getCategories().map(renderOption)}
         </Form.Select>
         <label className="visually-hidden" htmlFor="category">
           {t('text.chooseCategory')}

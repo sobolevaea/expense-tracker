@@ -13,3 +13,15 @@ export const loadExpenses = () => {
 export const saveExpenses = (expenses) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses))
 }
+
+export const formatRuble = (value) => {
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    minimumFractionDigits: 0,
+  }).format(value)
+}
+
+export const formatDate = (isoDate) => {
+  return new Intl.DateTimeFormat('ru-RU').format(new Date(isoDate))
+}

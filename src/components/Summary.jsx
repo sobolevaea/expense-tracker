@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next"
 
 import CardWrapper from "./CardWrapper.jsx"
 import ExpensesPieChart from "./ExpensesPieChart.jsx"
-import { formatRuble } from "../utils/formatCurrency.js"
+import { formatRuble } from "../utils/index.js"
 import { getCategoryName } from "../constants/categories.js"
 import { selectTotalAmount, selectAmountByCategoryFiltered } from "../store/expensesSlice.js"
 
